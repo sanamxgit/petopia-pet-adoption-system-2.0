@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         body {
             font-family: var(--font-epilogue);
             background-color: #f2f2f2;
-            margin: 0;
+            margin: 385px;
             padding: 20px;
         }
 
@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 20px;
+            
         }
 
         .card {
@@ -146,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            margin-top: 200px;
+            margin-top: ;
         }
 
         .search-form button {
@@ -231,19 +232,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($conn, $sql);
 
         // Your existing product display loop
+        // while ($row = mysqli_fetch_assoc($result)) {
+        //     echo "<div class='card'>";
+        //     echo "<h3>" . $row['productName'] . "</h3>";
+        //     echo "<p>Pet Description: " . $row['productDescription'] . "</p>";
+        //     echo "<p>Pet Category: " . $row['productCategory'] . "</p>";
+        //     echo "<p>Gender: " . $row['gender'] . "</p>";
+        //     echo "<p>Weight: " . $row['itemsWeight'] . "</p>";
+        //     echo "<p>Pet Price: $" . $row['price'] . "</p>";
+        //     echo "<p>Compare Price: $" . $row['comparePrice'] . "</p>";
+        //     echo "<img src='http://localhost/pet-adoption-system-html-css-js-php/images/" . $row['image'] . "' alt='Product Image'>";
+        //     // Modify the button to include an onclick event
+        //    echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";            echo "</div>";
+        // }
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<div class='card'>";
-            echo "<h3>" . $row['productName'] . "</h3>";
-            echo "<p>Pet Description: " . $row['productDescription'] . "</p>";
-            echo "<p>Pet Category: " . $row['productCategory'] . "</p>";
-            echo "<p>Gender: " . $row['gender'] . "</p>";
-            echo "<p>Weight: " . $row['itemsWeight'] . "</p>";
-            echo "<p>Pet Price: $" . $row['price'] . "</p>";
-            echo "<p>Compare Price: $" . $row['comparePrice'] . "</p>";
-            echo "<img src='http://localhost/pet-adoption-system-html-css-js-php/images/" . $row['image'] . "' alt='Product Image'>";
-            // Modify the button to include an onclick event
-           echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";            echo "</div>";
+            echo "<a class='frame-group' href='./kaluu.html' id='frameLink'>";
+            echo "<div class='image-4-frame' id='photo frame'>";
+            echo "<img class='image-4-icon2' alt='" . $row['productName'] . "' src='http://localhost/pet-adoption-system-html-css-js-php/images/" . $row['image'] . "' style='position: absolute; top: 0; left: -26px; width: 341px; height: 229px; object-fit: cover;' />";
+            echo "</div>";
+            echo "<div class='frame-wrapper'>";
+            echo "<div class='rectangle-parent'>";
+            echo "<div class='rectangle-div'></div>";
+            echo "<div class='kaluu'>" . $row['productName'] . "</div>";
+            echo "<div class='affenpinscher-parent'>";
+            echo "<div class='affenpinscher'>" . $row['productCategory'] . "</div>";
+            // Assuming 'adult' is dynamically determined
+            echo "<div class='adult'>" . $row['gender'] . "</div>";
+            echo "<div class='div15'>.</div>";
+            echo "</div>";
+            // Assuming '6 miles away' is dynamically determined
+            echo "<div class='miles-away-wrapper'>";
+            echo "<div class='miles-away'>6 miles away</div>";
+            echo "</div>";
+            echo "</div>";
+            // Assuming 'Adopt Now' button redirects to payment
+            
+            echo "</div>";
+            echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";
+            echo "</a>";
         }
+        
+        
         ?>
     </div>
 
