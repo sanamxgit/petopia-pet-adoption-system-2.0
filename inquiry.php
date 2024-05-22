@@ -1,3 +1,43 @@
+<?php
+// Database connection parameters
+$servername = "localhost"; // Change this if your database is on a different server
+$username = "root"; // Your MySQL username
+$password = ""; // Your MySQL password
+$dbname = "addproducts"; // Name of your database
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Prepare and bind parameters
+    $stmt = $conn->prepare("INSERT INTO inquiries (firstname, lastname, email, phone, query) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $firstname, $lastname, $email, $phone, $query);
+
+    // Set parameters and execute
+    $firstname = $_POST['firstname'] ?? '';
+    $lastname = $_POST['lastname'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $query = $_POST['query'] ?? '';
+
+    if ($stmt->execute()) {
+        $message = "Thank You For Your Queries! We will contact you as soon as possible.";
+    } else {
+        $message = "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -145,8 +185,8 @@
         <div class="headnavigation1">
           <a class="contact1" href="javascript:void(0);" onclick="openOverlay()">Contact?</a> 
           <a class="inquiry1" href="/inquiry.php">Inquiry</a>
-          <a class="products1" href="/products.html">Products</a>
-          <a class="adopt5" href="/adopt.html">Adopt</a>
+          <a class="products1" href="pet_items.php">Products</a>
+          <a class="adopt5" href="view_products.php">Adopt</a>
           <a class="home1" href="index.html">Home</a>
         </div>
         <a class="logo1" href="index.html">
@@ -278,6 +318,7 @@
             </div>
         </div>
       </div>
+      
 
     </div>
     <script>

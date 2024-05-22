@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           />
 
           <button class="shelter8">
-            <button class="group-parent2" autofocus="{true}" id="shelter">
+            <button class="group-parent2"" id="shelter" onclick="navigateToLogin()">
               <img class="frame-child2" alt="" src="./public/group-13.svg" />
 
               <div class="shelter9">Shelter?</div>
@@ -179,11 +179,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </button>
         </div>
         <div class="headnavigation5">
-          <a class="home4" href="/home.html">Home</a>
-          <a class="adopt16" href="/adopt.html">Adopt</a>
-          <a class="products6" href="/products.html">Products</a>
-          <a class="inquiry4" href="/inquire.html">Inquiry</a>
-          <a class="contact4" href="/contacts.html">Contact?</a>
+          <a class="home4" href="index.html">Home</a>
+          <a class="adopt16" href="view_products.php">Adopt</a>
+          <a class="products6" href="pet_items.php">Products</a>
+          <a class="inquiry4" href="inquiry.php">Inquiry</a>
+          <a class="contact4" href="javascript:void(0);" onclick="openOverlay()">Contact?</a> 
         </div>
         <a class="logo5" href="index.html">
           <div class="bg5"></div>
@@ -246,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //    echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";            echo "</div>";
         // }
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<a class='frame-group' href='./kaluu.html' id='frameLink'>";
+            echo "<a class='frame-group' href='./Payment.php' id='frameLink'>";
             echo "<div class='image-4-frame' id='photo frame'>";
             echo "<img class='image-4-icon2' alt='" . $row['productName'] . "' src='http://localhost/pet-adoption-system-html-css-js-php/images/" . $row['image'] . "' style='position: absolute; top: 0; left: -26px; width: 341px; height: 229px; object-fit: cover;' />";
             echo "</div>";
@@ -260,6 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class='adult'>" . $row['gender'] . "</div>";
             echo "<div class='div15'>.</div>";
             echo "</div>";
+            echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";
             // Assuming '6 miles away' is dynamically determined
             echo "<div class='miles-away-wrapper'>";
             echo "<div class='miles-away'>6 miles away</div>";
@@ -268,18 +269,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Assuming 'Adopt Now' button redirects to payment
             
             echo "</div>";
-            echo "<button onclick='redirectToPayment(\"" . $row['productName'] . "\", " . $row['price'] . ")' class='adopt-btn'>Adopt Now!!!</button>";
+            
             echo "</a>";
+            
         }
         
         
         ?>
+            <div class="home-page">
+    <div id="contactOverlay" style="display: none; position: fixed; padding: 18px; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1;">
+        <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--color-darkgray);padding: var(--padding-25xl) 9px var(--padding-25xl) var(--padding-xl); border-radius: var(--br-xl); width: 80%; max-width: auto; box-shadow: 0 0 10px rgba(0,0,0,0.25);">
+            <span onclick="closeOverlay()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: black; cursor: pointer;">&times;</span>
+            <div class="contact-container" style="text-align: center; color: white; ">
+                <h2>Prefer another way to find us?</h2>
+                <p class="contact-info" style="margin: 10px 0;">+977 9801010101, +977 01-5970120, +977 9801000078</p>
+                <p class="contact-info" style="margin: 10px 0; font-weight: bold; color: var(--color-darkslategray);">info@petopia.com</p>
+                <!-- You can embed a Google Map here -->
+            </div>
+        </div>
+      </div>
     </div>
 
     <script>
+                    function navigateToLogin() {
+              window.location.href = 'login.php';
+            }
+                function openOverlay() {
+            document.getElementById('contactOverlay').style.display = 'block';
+        }
+        function closeOverlay() {
+            document.getElementById('contactOverlay').style.display = 'none';
+        }
       function redirectToPayment(productName, price) {
             // Redirect to payment.php with the product name and price as query parameters
-            window.location.href = "payments.php?productName=" + encodeURIComponent(productName) + "&price=" + encodeURIComponent(price);
+            window.location.href = "Payment.php?productName=" + encodeURIComponent(productName) + "&price=" + encodeURIComponent(price);
         }
 
         function sortProducts() {

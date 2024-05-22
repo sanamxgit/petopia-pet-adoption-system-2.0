@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $itemDescription = $_POST['itemDescription'];
     $itemType = $_POST['itemType'];
     $price = $_POST['price'];
+    $discounted_price = $_POST['discounted_price'];
     $availableQuantity = $_POST['availableQuantity'];
 
     // Handle image upload
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
     // Insert data into database
     if(isset($imageDestination)) {
-        $sql = "INSERT INTO pet_items (itemName, itemDescription, itemType, price, available_quantity, itemImage)
-                VALUES ('$itemName', '$itemDescription', '$itemType', $price, $availableQuantity, '$imageDestination')";
+        $sql = "INSERT INTO pet_items (itemName, itemDescription, itemType, price, discounted_price, available_quantity, itemImage)
+                VALUES ('$itemName', '$itemDescription', '$itemType', $price, $discounted_price, $availableQuantity, '$imageDestination')";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Item added successfully.');</script>";
@@ -215,6 +216,9 @@ input[type="reset"] {
 
                     <label for="price">Price:</label>
                     <input type="text" id="price" name="price" required>
+
+                    <label for="discounted_price">Discounted Price:</label>
+                    <input type="text" id="discounted_price" name="discounted_price">
 
                     <label for="availableQuantity">Available Quantity:</label>
                     <input type="text" id="availableQuantity" name="availableQuantity" required>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
     <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="dogs.css">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700;800&display=swap"
@@ -14,50 +15,24 @@
       href="https://fonts.googleapis.com/css2?family=Figma Hand:wght@700&display=swap"
     />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .order-details {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 600px;
-        }
-
-        .order-details h4 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .order-details p1 {
-            margin: 5px 0;
-        }
-
-        .view-details-btn {
+      p {
+        font-size:15px;
+      }
+      strong, p, h4, .customerName {
+        font-size:15px;
+      }
+      .view-details-btn {
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 5px;
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-
         .search-bar {
   border: 0;
   outline: 0;
@@ -154,6 +129,7 @@
 .vector-icon6 {
   position: absolute;
 }
+
     </style>
   </head>
   <body>
@@ -227,7 +203,6 @@
           <div class="petopia5">petopia</div>
         </div>
       </footer>
-      <h1 class="browse-dogs">Browse Dogs</h1>
       <nav class="navbar5" id="mainNavigationBar">
         <div class="rightnavigation5">
           <input
@@ -250,42 +225,65 @@
           <a class="adopt16" href="/adopt.html">Adopt</a>
           <a class="products6" href="/products.html">Products</a>
           <a class="inquiry4" href="/inquire.html">Inquiry</a>
-          <a class="contact4" href="/contacts.html">Contact?</a>
+          <a class="contact1" href="javascript:void(0);" onclick="openOverlay()">Contact?</a> 
         </div>
         <a class="logo5" href="index.html">
           <div class="bg5"></div>
           <img class="vector-icon81" alt="" src="./public/vector51.svg" />
         </a>
       </nav>
-      <div class="order-details">
-        <h4>Customer Information</h4>
-        <p1><strong>Name:</strong> <?php echo isset($_POST['customerName']) ? htmlspecialchars($_POST['customerName']) : ''; ?></p1>
-        <p1><strong>Phone Number:</strong> <?php echo isset($_POST['phoneNumber']) ? htmlspecialchars($_POST['phoneNumber']) : ''; ?></p1>
-        <p1><strong>Email:</strong> <?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?></p1>
+      <div class="order-details" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; margin: 200px auto; max-width: 600px;">
+    <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 20px; text-align: center;">Customer Information</h3>
+    <p1 style="margin: 5px 0; display: block; text-align: left;"><strong>Name:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['customerName']) ? htmlspecialchars($_POST['customerName']) : ''; ?></span></p1>
+    <p1 style="margin: 5px 0; display: block; text-align: left;"><strong>Phone Number:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['phoneNumber']) ? htmlspecialchars($_POST['phoneNumber']) : ''; ?></span></p1>
+    <p1 style="margin: 5px 0; display: block; text-align: left;"><strong>Email:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?></span></p1>
 
-        <h4>Delivery Address</h4>
-        <p1><strong>Address:</strong> <?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?></p1>
-        <p1><strong>Postal Code:</strong> <?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode']) : ''; ?></p1>
-        <p1><strong>Address 2:</strong> <?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2']) : ''; ?></p1>
+    <h4 style="margin-top: 20px; text-align: left;">Delivery Address</h4>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Address:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?></span></p1>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Postal Code:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['postalCode']) ? htmlspecialchars($_POST['postalCode']) : ''; ?></span></p1>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Address 2:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['address2']) ? htmlspecialchars($_POST['address2']) : ''; ?></span></p1>
 
-        <h4>Order Summary</h4>
-        <p1><strong>Product Name:</strong> <?php echo isset($_POST['productName']) ? htmlspecialchars($_POST['productName']) : ''; ?></p1>
-        <p1><strong>Price:</strong> <?php echo isset($_POST['price']) ? '$' . htmlspecialchars($_POST['price']) : ''; ?></p1>
+    <h4 style="margin-top: 20px; text-align: left;">Order Summary</h4>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Product Name:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['productName']) ? htmlspecialchars($_POST['productName']) : ''; ?></span></p1>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Price:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['price']) ? '$' . htmlspecialchars($_POST['price']) : ''; ?></span></p1>
 
-        <h4>Payment Method</h4>
-        <p1><strong>Selected Payment Method:</strong> <?php echo isset($_POST['paymentMethod']) ? htmlspecialchars($_POST['paymentMethod']) : ''; ?></p1>
+    <h4 style="margin-top: 20px; text-align: left;">Payment Method</h4>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Selected Payment Method:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['paymentMethod']) ? htmlspecialchars($_POST['paymentMethod']) : ''; ?></span></p1>
 
-        <h4>Promo Code</h4>
-        <p1><strong>Promo Code:</strong> <?php echo isset($_POST['promoCode']) ? htmlspecialchars($_POST['promoCode']) : ''; ?></p1>
+    <h4 style="margin-top: 20px; text-align: left;">Promo Code</h4>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Promo Code:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['promoCode']) ? htmlspecialchars($_POST['promoCode']) : ''; ?></span></p1>
 
-        <h4>Voucher</h4>
-        <p1><strong>Voucher:</strong> <?php echo isset($_POST['voucher']) ? htmlspecialchars($_POST['voucher']) : ''; ?></p1>
-    </div>
-
+    <h4 style="margin-top: 20px; text-align: left;">Voucher</h4>
+    <p1 style="margin: 5px 0; text-align: left;"><strong>Voucher:</strong> <span style="font-size: 16px;"><?php echo isset($_POST['voucher']) ? htmlspecialchars($_POST['voucher']) : ''; ?></span></p1>
     <button class="view-details-btn" onclick="window.print()">Print Details</button>
+</div>
+<div class="home-page">
+    <div id="contactOverlay" style="display: none; position: fixed; padding: 18px; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1;">
+        <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--color-darkgray);padding: var(--padding-25xl) 9px var(--padding-25xl) var(--padding-xl); border-radius: var(--br-xl); width: 80%; max-width: auto; box-shadow: 0 0 10px rgba(0,0,0,0.25);">
+            <span onclick="closeOverlay()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: black; cursor: pointer;">&times;</span>
+            <div class="contact-container" style="text-align: center; color: white; ">
+                <h2>Prefer another way to find us?</h2>
+                <p class="contact-info" style="margin: 10px 0;">+977 9801010101, +977 01-5970120, +977 9801000078</p>
+                <p class="contact-info" style="margin: 10px 0; font-weight: bold; color: var(--color-darkslategray);">info@petopia.com</p>
+                <!-- You can embed a Google Map here -->
+            </div>
+        </div>
+      </div>
+
+
+
+
+
+
     </div>
 
     <script>
+              function openOverlay() {
+            document.getElementById('contactOverlay').style.display = 'block';
+        }
+        function closeOverlay() {
+            document.getElementById('contactOverlay').style.display = 'none';
+        }
       var frameLink = document.getElementById("frameLink");
       if (frameLink) {
         frameLink.addEventListener("click", function (e) {

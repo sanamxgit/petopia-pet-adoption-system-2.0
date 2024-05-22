@@ -337,7 +337,7 @@
 .discountedprice3 {
   position: absolute;
   top: 0;
-  left: 185px;
+  left: 1px;
   border-radius: var(--br-2xs);
   background: linear-gradient(90deg, #fff, #e8eae9 58.71%, #a3bbad);
   height: 32px;
@@ -664,6 +664,7 @@
   position: absolute;
   top: 0;
   left: 34.32%;
+ 
   font-size: var(--font-size-26xl);
   letter-spacing: 0.1em;
   font-weight: 800;

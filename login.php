@@ -69,19 +69,19 @@
           />
 
           <button class="shelter2">
-            <button class="group-container" id="shelter">
+            <button class="group-container" id="shelter" onClick = "navigateToLogin()">
               <img class="frame-inner" alt="" src="./public/group-13.svg" />
 
-              <div class="register">Register?</div>
+              <div class="register">Shelter?</div>
             </button>
           </button>
         </div>
         <div class="headnavigation1">
-          <a class="contact1" href="/contacts.html">Contact?</a>
-          <a class="inquiry1" href="/inquire.html">Inquiry</a>
-          <a class="products1" href="/products.html">Products</a>
-          <a class="adopt5" href="/adopt.html">Adopt</a>
-          <a class="home1" href="/home.html">Home</a>
+        <a class="contact1" href="javascript:void(0);" onclick="openOverlay()">Contact?</a>
+          <a class="inquiry1" href="inquiry.php">Inquiry</a>
+          <a class="products1" href="pet_items.php">Products</a>
+          <a class="adopt5" href="view_products.php">Adopt</a>
+          <a class="home1" href="index.html">Home</a>
         </div>
         <a class="logo1" href="index.html">
           <div class="bg1"></div>
@@ -178,6 +178,29 @@
           
         </div>
       </form>
+      <div id="contactOverlay" style="display: none; position: fixed; padding: 18px; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1;">
+        <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--color-darkgray);padding: var(--padding-25xl) 9px var(--padding-25xl) var(--padding-xl); border-radius: var(--br-xl); width: 80%; max-width: auto; box-shadow: 0 0 10px rgba(0,0,0,0.25);">
+            <span onclick="closeOverlay()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: black; cursor: pointer;">&times;</span>
+            <div class="contact-container" style="text-align: center; color: white; ">
+                <h2>Prefer another way to find us?</h2>
+                <p class="contact-info" style="margin: 10px 0;">+977 9801010101, +977 01-5970120, +977 9801000078</p>
+                <p class="contact-info" style="margin: 10px 0; font-weight: bold; color: var(--color-darkslategray);">info@petopia.com</p>
+                <!-- You can embed a Google Map here -->
+            </div>
+        </div>
+      </div>
     </div>
+    <script>
+                  function navigateToLogin() {
+              window.location.href = 'login.php';
+            }
+
+        function openOverlay() {
+            document.getElementById('contactOverlay').style.display = 'block';
+        }
+        function closeOverlay() {
+            document.getElementById('contactOverlay').style.display = 'none';
+        }
+    </script>
   </body>
 </html>
