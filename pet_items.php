@@ -265,7 +265,7 @@ $result = $conn->query($sql);
           />
 
           <button class="shelter8">
-            <button class="group-parent2" autofocus="{true}" id="shelter">
+            <button class="group-parent2" id="shelter" onClick = "navigateToLogin()">
               <img class="frame-child2" alt="" src="./public/group-13.svg" />
 
               <div class="shelter9">Shelter?</div>
@@ -413,6 +413,10 @@ $result = $conn->query($sql);
   ?>
 
   <script>
+        function navigateToLogin() {
+            window.location.href = 'login.php';
+        }
+
         function openOverlay() {
             document.getElementById('contactOverlay').style.display = 'block';
         }
