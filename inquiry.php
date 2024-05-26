@@ -178,7 +178,7 @@ $conn->close();
             <button class="group-container" id="shelter" onClick="navigateToLogin()">
               <img class="frame-inner" alt="" src="./public/group-13.svg" />
 
-              <div class="register">Register?</div>
+              <div class="register">Shelter?</div>
             </button>
           </button>
         </div>

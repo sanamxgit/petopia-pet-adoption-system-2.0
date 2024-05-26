@@ -24,6 +24,16 @@ function removeFromCart($productId) {
   }
 }
 
+// Function to update the quantity of a product in the cart
+function updateCartQuantity($productId, $quantityChange) {
+  if (isset($_SESSION['cart'][$productId])) {
+    $_SESSION['cart'][$productId]['quantity'] += $quantityChange;
+    if ($_SESSION['cart'][$productId]['quantity'] <= 0) {
+      unset($_SESSION['cart'][$productId]);
+    }
+  }
+}
+
 // Function to calculate total cart price
 function calculateTotalPrice() {
   $totalPrice = 0;
@@ -134,6 +144,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     addToCart($_POST['item_id']);
   } elseif (isset($_POST['remove_quantity'])) {
     removeFromCart($_POST['item_id']);
+  } elseif (isset($_POST['increase_quantity'])) {
+    updateCartQuantity($_POST['item_id'], 1);
+  } elseif (isset($_POST['decrease_quantity'])) {
+    updateCartQuantity($_POST['item_id'], -1);
   } elseif (isset($_POST['cancel_order'])) {
     unset($_SESSION['cart']); // Clear the cart
     echo "<div class='cart-cleared'>Cart Cleared</div>"; // Display Cart Cleared message
@@ -190,7 +204,7 @@ $result = $conn->query($sql);
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 300px;
+      width: 500px;
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 5px;
@@ -289,7 +303,7 @@ $result = $conn->query($sql);
       <div class="maindiv">
 
 
-    <div class="productcard1-parent">
+      <div class="productcard1-parent">
         <div class="row"> <!-- Start new row -->
             <?php
             $counter = 0; // Counter for displaying three products in a row
@@ -367,8 +381,8 @@ $result = $conn->query($sql);
 
 
 
-  <!-- Cart Section -->
-  <div class="cart-container<?php echo (!empty($_SESSION['cart']) ? ' show' : ''); ?>">
+<!-- Cart Section -->
+<div class="cart-container<?php echo (!empty($_SESSION['cart']) ? ' show' : ''); ?>">
     <h3>Shopping Cart</h3>
     <div class="cart-items">
       <?php
@@ -377,18 +391,32 @@ $result = $conn->query($sql);
           echo "<div class='cart-item'>";
           echo "<img src='" . getItemImage($cartItem['id']) . "' alt='Cart Item Image'>";
           echo "<p>" . getItemName($cartItem['id']) . "</p>";
-          echo "<form method='post'>";
+          echo "<div class='quantity'>";
+          echo "<form method='post' style='display: inline;'>";
           echo "<input type='hidden' name='item_id' value='" . $cartItem['id'] . "'>";
-          echo "<button type='submit' name='remove_quantity' class='remove-button'>Remove</button>"; // Change to Remove button
+          echo "<button type='submit' name='decrease_quantity'>-</button>";
+          echo "</form>";
           echo "<span>" . $cartItem['quantity'] . "</span>";
+          echo "<form method='post' style='display: inline;'>";
+          echo "<input type='hidden' name='item_id' value='" . $cartItem['id'] . "'>";
+          echo "<button type='submit' name='increase_quantity'>+</button>";
+          echo "</form>";
+          echo "</div>";
+          echo "<form method='post' style='display: inline;'>";
+          echo "<input type='hidden' name='item_id' value='" . $cartItem['id'] . "'>";
+          echo "<button type='submit' name='remove_quantity' class='remove-button'>Remove</button>"; 
           echo "</form>";
           echo "</div>";
         }
         echo "<div class='cart-total'>Total: $" . calculateTotalPrice() . "</div>";
         echo "<div class='cart-buttons'>";
         echo "<form method='post' action='payment.php'>";
+        echo "<input type='hidden' name='item_id' value='" . $row['itemID'] . "'>";
+        echo "<input type='hidden' name='item_name' value='" . $row['itemName'] . "'>";
+        echo "<input type='hidden' name='item_price' value='" . $row['price'] . "'>";
         echo "<button type='submit' name='proceed_payment'>Proceed Payment</button>";
         echo "</form>";
+        
         echo "<form method='post'>";
         echo "<button type='submit' name='cancel_order'>Cancel</button>";
         echo "</form>";
@@ -397,9 +425,8 @@ $result = $conn->query($sql);
         echo "<p>Your cart is empty.</p>";
       }
       ?>
-      
     </div>
-
+  </div>
   
 
   <?php
@@ -431,7 +458,6 @@ $result = $conn->query($sql);
       }
     });
   </script>
-
   
 
 </body>

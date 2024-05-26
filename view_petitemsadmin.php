@@ -79,6 +79,7 @@ $result = mysqli_query($conn, $sql);
     <title>Edit Pet Items</title>
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="admin.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;

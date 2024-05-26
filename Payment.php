@@ -154,7 +154,6 @@
             </div>
                         <div class="all-taxes-included">All taxes included</div>
                     </div>
-                    <img class="line-icon" alt="" src="./public/line-11.svg" />
                 </form>
                 <h1 class="payment">Payment</h1>
             </div>
@@ -167,6 +166,8 @@
                 // Display the product name in the iframe
                 echo "<iframe class='frame-iframe' id='petType' name>$productName</iframe>";
                 echo "<div class='pet-type-'>$productName</div>";
+
+                
                 ?>
             </div>
         </main>
@@ -220,7 +221,6 @@
 
     // Add a click event listener to the "Place Order" button
     document.getElementById("placeOrder").addEventListener("click", showMessage);
-
 
 </script>
 </body>

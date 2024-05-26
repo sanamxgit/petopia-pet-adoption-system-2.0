@@ -401,7 +401,7 @@ $conn->close();
         <h1>Admin Settings</h1>
 
         <div class="admin-info-box">
-            <h2>Admin Information</h2>
+            <h2 style="text-align: left;">Admin Information</h2>
             <?php if (isset($adminInfo) && !empty($adminInfo)) { ?>
                 <p>ID: <?php echo $adminInfo['id']; ?></p>
                 <p>Username: <?php echo $adminInfo['username']; ?></p>
